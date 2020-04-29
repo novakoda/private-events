@@ -12,6 +12,12 @@ class EventsController < ApplicationController
   def show
   end
 
+  def attend
+    @event = Event.find(params[:id])
+    current_user.attended_events << @event
+    redirect_to @event, notice: 'You have promised to attend this event.'
+  end
+
   # GET /events/new
   def new
     @event = current_user.hosted_events.build
