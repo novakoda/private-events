@@ -12,9 +12,16 @@
   <% end %>
 </ul>
 
-<h1>Events <%= @user.name %> is attending</h1>
+<h1>Upcoming Events <%= @user.name %> is Attending</h1>
 <ul>
-  <% @user.attended_events.each do |event| %>
+  <% @upcoming_events.each do |event| %>
+    <li><%= link_to event.name, event_path(event) %></li>
+  <% end %>
+</ul>
+
+<h1>Past Events <%= @user.name %> Attended</h1>
+<ul>
+  <% @previous_events.each do |event| %>
     <li><%= link_to event.name, event_path(event) %></li>
   <% end %>
 </ul>

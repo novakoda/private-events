@@ -6,4 +6,13 @@ class User < ApplicationRecord
 
   has_many :hosted_events, class_name: "Event", foreign_key: "host_id"
   has_and_belongs_to_many :attended_events, class_name: "Event"
+
+  def previous_events
+    self.attended_events.where("date < ?", Time.zone.now)
+  end
+
+  def upcoming_events
+    self.attended_events.where("date > ?", Time.zone.now)
+  end
+
 end
